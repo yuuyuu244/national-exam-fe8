@@ -3,7 +3,7 @@ package com.mumvall.national_exam_fe8.p2019h;
 import java.util.Arrays;
 
 /**
- * 2019春 アルゴリズムの問題
+ * 2019秋 アルゴリズムの問題
  * @author mumvall
  *
  */
