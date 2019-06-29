@@ -4,7 +4,7 @@ package com.mumvall.national_exam_fe8.p2018a;
  * 基本情報技術者試験(2018年秋 問8)をJavaで表してみたクラス
  * @author mumvall
  */
-public class Q2018h30h_fe_pm_qs_08 {
+public class Q2018h30a_fe_pm_qs_08 {
 
     /**
      * プログラムを実行するうえで一番最初に実行されるメソッド。
