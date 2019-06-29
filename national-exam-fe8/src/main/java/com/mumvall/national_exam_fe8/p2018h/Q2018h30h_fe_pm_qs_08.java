@@ -7,7 +7,7 @@ package com.mumvall.national_exam_fe8.p2018h;
 
 /**
  *
- * @author user
+ * @author mumvall
  */
 public class Q2018h30h_fe_pm_qs_08 {
 
