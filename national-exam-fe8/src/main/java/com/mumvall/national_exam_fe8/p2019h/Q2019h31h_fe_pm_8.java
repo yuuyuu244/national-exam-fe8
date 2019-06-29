@@ -10,28 +10,13 @@ import java.util.Arrays;
 public class Q2019h31h_fe_pm_8 {
 	/** 配列の要素数 */
 	public static final int ARRAY_SIZE = 7;
+
 	/** 葉の数 */
 	public static Integer size = 4;
+
 	/** 親が作成されていない要素の数 */
 	private static int nsize = 0;
 
-
-	/**
-	 * 配列表示メソッド(独自)
-	 */
-	static void printAry(String text, int[] array) {
-		System.out.println(text + "\t" + Arrays.toString(array));
-	}
-
-	/**
-	 * 初期化メソッド(独自)
-	 */
-	public static void init(int[] parent, int[] left, int[] right) {
-		Arrays.fill(parent, -1); // parent: -1で初期化
-		Arrays.fill(left, -1);   // left  : -1で初期化
-		Arrays.fill(right, -1);  // right : -1で初期化
-
-	}
 
 	/**
 	 * mainメソッド(独自)
@@ -39,20 +24,48 @@ public class Q2019h31h_fe_pm_8 {
 	 */
 	public static void main(String[] args) {
 		int[] parent = new int[ARRAY_SIZE];
-		int[] left   = new int[ARRAY_SIZE];
-		int[] right  = new int[ARRAY_SIZE];
-		int[] freq   = {10, 2, 4, 3, -1, -1, -1};
+		int[] left = new int[ARRAY_SIZE];
+		int[] right = new int[ARRAY_SIZE];
+		// 本試問題の与えられた数値そのまま
+		int[] freq = { 10, 2, 4, 3, -1, -1, -1 };
 
+		// 初期化
 		init(parent, left, right);
+
+		// ハフマン木作成
 		huffman(size, parent, left, right, freq);
 
-		System.out.println("ハフマン木作成後の状態");
+		System.out.println("-------ハフマン木作成後の状態-------");
+
+		// 変更後の表示
 		printAry("parent", parent);
 		printAry("left", left);
 		printAry("right", right);
-		printAry("freq" , freq);
+		printAry("freq", freq);
 
 		System.out.println("要素0 : " + encode(0, parent, left));
+
+	}
+
+	/**
+	 * 配列表示メソッド(独自)
+	 * @param text 表示名
+	 * @param array 配列
+	 */
+	static void printAry(String text, int[] array) {
+		System.out.println(text + "\t" + Arrays.toString(array));
+	}
+
+	/**
+	 * 初期化メソッド(独自)
+	 * @param parent 配列
+	 * @param left 配列
+	 * @param right 配列
+	 */
+	public static void init(int[] parent, int[] left, int[] right) {
+		Arrays.fill(parent, -1); // parent: -1で初期化
+		Arrays.fill(left, -1); // left  : -1で初期化
+		Arrays.fill(right, -1); // right : -1で初期化
 
 	}
 
@@ -69,8 +82,8 @@ public class Q2019h31h_fe_pm_8 {
 	 *                  親から見て右側の要素番号
 	 * @param freq		文字の出現回数が格納された配列
 	 */
-	public static void huffman(int size, int[] parent, int[] left,
-								int[] right, int[] freq) {
+	private static void huffman(int size, int[] parent, int[] left,
+			int[] right, int[] freq) {
 		// i:左要素の添え字, j:右要素の添え字
 		int i, j;
 		// 親が作成されていない要素の要素番号を保持する配列
@@ -88,7 +101,7 @@ public class Q2019h31h_fe_pm_8 {
 			j = node[1];
 
 			// 親要素作成に当たり、左右の要素を決定している。
-			left[size]  = i;
+			left[size] = i;
 			right[size] = j;
 
 			// ハフマン木の子要素(左右)の合計 = 親の要素
@@ -121,7 +134,7 @@ public class Q2019h31h_fe_pm_8 {
 	 *              もう少し良い作り方をすれば、わざわざ引数で渡す必要もない。
 	 */
 	private static void sortNode(int size, int[] parent, int[] freq,
-								int nsize_, int[] node) {
+			int nsize_, int[] node) {
 		nsize_ = 0;
 
 		// 親が作成されていない要素の数を求めてnsizeに格納
@@ -156,30 +169,30 @@ public class Q2019h31h_fe_pm_8 {
 		int[] freq_copy = new int[ARRAY_SIZE];
 
 		// 親の作成されていない要素配列番号の出現回数のコピー
-		for (int i = 0; (node[i] != -1) && (i < nsize); i++ ) {
+		for (int i = 0; (node[i] != -1) && (i < nsize); i++) {
 			freq_copy[i] = freq[node[i]];
 		}
 
-    	//昇順ソート
+		//昇順ソート
 		// バブルソートを採用(問題自体でそーとアルゴリズムの指定はないため、任意)
-        for(int i=0; i < nsize-1; i++) {
-            for(int j=0; j < nsize-i-1; j++) {
-            	if(freq_copy[j] > freq_copy[j+1]/*freq[j] > freq[j+1]*/) {
-            		int asc = freq_copy[j];
-            		int asc2 = node[j];
+		for (int i = 0; i < nsize - 1; i++) {
+			for (int j = 0; j < nsize - i - 1; j++) {
+				if (freq_copy[j] > freq_copy[j + 1]/*freq[j] > freq[j+1]*/) {
+					int asc = freq_copy[j];
+					int asc2 = node[j];
 
-            		freq_copy[j] = freq_copy[j+1];
-            		node[j] = node[j+1];
+					freq_copy[j] = freq_copy[j + 1];
+					node[j] = node[j + 1];
 
-            		freq_copy[j+1] = asc;
-            		node[j+1] = asc2;
-            	}
-            }
-        }
+					freq_copy[j + 1] = asc;
+					node[j + 1] = asc2;
+				}
+			}
+		}
 
 	}
 
-//--------------------------------------------------------
+	//--------------------------------------------------------
 
 	/**
 	 *  プログラム2
@@ -187,7 +200,7 @@ public class Q2019h31h_fe_pm_8 {
 	 *  <br>本試の問題では、0,1を表示しているが、
 	 *  <br>いけてないので文字列で返す。
 	 */
-	public static String encode(int k, int[] parent, int[] left) {
+	private static String encode(int k, int[] parent, int[] left) {
 		StringBuilder s = new StringBuilder();
 		// 親が-1でない場合。
 		// つまり、ルートノード(根)ではない場合。
@@ -206,10 +219,11 @@ public class Q2019h31h_fe_pm_8 {
 				//System.out.print("1");
 			}
 
-		}/*else {
+		} /*else {
 			System.out.println("根まで戻った" + s.toString());
-		}*/
+			}*/
 		return s.toString();
 
 	}
+
 }
