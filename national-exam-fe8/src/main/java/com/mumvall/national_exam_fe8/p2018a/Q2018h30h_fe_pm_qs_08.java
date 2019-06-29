@@ -188,7 +188,7 @@ public class Q2018h30h_fe_pm_qs_08 {
 
     /**
      * char型配列を表示する。
-     * ※菊谷が勝手に作ったメソッド。
+     * ※勝手に作ったメソッド。
      * @param a char型配列
      * @param length 配列の長さ
      * @param argsName 配列名
