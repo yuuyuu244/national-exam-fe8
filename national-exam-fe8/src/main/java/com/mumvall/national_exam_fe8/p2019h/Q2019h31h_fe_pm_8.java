@@ -43,7 +43,10 @@ public class Q2019h31h_fe_pm_8 {
 		printAry("right", right);
 		printAry("freq", freq);
 
-		System.out.println("要素0 : " + encode(0, parent, left));
+		// チェック対象の添え字
+		int index = 1;
+
+		System.out.println("要素" + index + "\t: " + encode(index, parent, left));
 
 	}
 
