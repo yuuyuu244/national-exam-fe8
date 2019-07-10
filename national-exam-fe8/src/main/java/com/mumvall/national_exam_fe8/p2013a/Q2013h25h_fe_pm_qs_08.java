@@ -32,24 +32,30 @@ public class Q2013h25h_fe_pm_qs_08 {
 	private static void q1() {
 		// 購入レコードの添字
 		int k;
+
 		int kp;
 		// 対象レコードの添字
 		int t;
+
 		int w;
 
 		/* 検索部 */
 		k = startPtr;
 		t = 1;
 
+		// 対象行数のチェック
 		while((k > 0) && (t <= targetLines)) {
+			// 購入レコードと対象レコードの品番が一致したら
 			if(buyRecord[k].number == targetRecord[t].number) {
 				targetRecord[t].number = buyRecord[k].number;
 				/* a */
 				/* b */
 			} else {
+				// 購入レコードの品番が対象レコードの品番より小さかったら
 				if(buyRecord[k].number < targetRecord[t].number) {
 					/* a */
 				} else {
+					// 購入レコードの品番が対象レコードの品番より大きかったら
 					/* b */
 				}
 			}
